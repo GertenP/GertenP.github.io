@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    height: 200px; /* Muuda vastavalt vajadusele */
+    align-items: center;
+    overflow: hidden;
+}
+
+header img {
+    width: 450px;
+}
+
+#iframe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 200px); /* Arvutab kõrguse nii, et iframe oleks pärast päist keskel */
+}
+
+iframe {
+    border: none;
+}
+
+header #kollane {
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    background-color: #ffc80b;
+    top: -80px; /* Negatiivne väärtus, et ruut läheks üle ülemise serva */
+    left: 20px;
+    transform: rotate(20deg); /* Kallutab ruutu */
+}
+
+header #sinine {
+    width: 300px;
+    height: 120px;
+    position: absolute;
+    background-color: #007cc2;
+    top: -40px; /* Nihutab sinise ruudu veelgi kõrgemale */
+    right: 20px;
+    transform: rotate(-15deg); /* Kallutab sinist ruutu vastassuunas */
+}
