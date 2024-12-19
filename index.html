@@ -1,32 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="et">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robootikaring</title>
+    <title>Gerten Clicker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header>
-        <div id="kollane"></div>
-        <img src="logo.jpg" alt="Logo">
-        <div id="sinine"></div>
-    </header>
-
-    <div id="navbar">
-
-        <button type="button" ><a href="matt.html" style="text-decoration: none; color:black;">ÕPPEMATT</a></button>
-        <button type="button" id="special_button" style="background-color: #dedede;">AVALEHT</button>
-        <button type="button"><a href="muu.html" style="text-decoration: none; color:black;">TUNNITÖÖ</a></button>
-
+    <div class="container">
+        <h1>Gerten Clicker</h1>
+        <div class="score-display">
+            Skoor: <span id="score">0</span>
+        </div>
+        <img src="gerten.png" id="gerten" alt="Gerten">
+        <div class="shop">
+            <h2>Pood</h2>
+            <button id="upgrade-click">Tugevda klikki (100 punkti)</button>
+            <button id="auto-clicker">Automaatklõpsaja (500 punkti)</button>
+            <button id="multiplier">Kordaja (1000 punkti)</button>
+            <div class="upgrades">
+                <p id="clickPower">Klikijõud: <span>1</span></p>
+                <p id="autoClickerRate">Automaatklõpsu sagedus: <span>0</span> sekundit</p>
+                <p id="multiplierLevel">Kordaja tase: <span>1x</span></p>
+            </div>
+        </div>
     </div>
-
-    <h1>ROBOOTIKARINGI MATERJALID</h1>
-
-    <footer>
-        <p>Gerten Pilv</p>
-    </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
