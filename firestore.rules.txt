@@ -1,0 +1,15 @@
+// Firebase konsoolis: Firestore Database -> Rules -> kleebi see sisse -> Publish
+//
+// Reegel ei ole seotud ühegi kindla kasutajaga - see lubab IGAL Authenticationis
+// loodud kasutajal (nt sinu enda kontol JA külastaja kontol) lugeda/kirjutada
+// AINULT oma enda dokumenti users/{tema oma uid}. Kaks kasutajat ei näe
+// ega mõjuta kunagi teineteise andmeid, ilma et reeglit peaks muutma.
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}
