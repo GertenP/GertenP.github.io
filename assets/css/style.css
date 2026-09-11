@@ -225,7 +225,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .blk { margin: 16px 0; }
 .blk-text { color: var(--text); }
-.blk-def, .blk-note, .blk-example, .blk-check {
+.blk-def, .blk-note, .blk-example, .blk-check, .blk-simple, .blk-mistake {
   border-radius: 10px;
   padding: 14px 16px;
   border: 1px solid var(--border);
@@ -239,16 +239,28 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 .blk-note .blk-label { color: var(--note-border); }
 .blk-example .blk-label { color: var(--example-border); }
 
+/* lihtsustus + levinud viga */
+.blk-simple { background: var(--accent-dim); border-color: var(--accent); border-style: dashed; }
+.blk-simple .blk-label { color: var(--accent); }
+.blk-mistake { background: color-mix(in srgb, var(--danger) 10%, var(--bg-alt)); border-color: var(--danger); }
+.blk-mistake .blk-label { color: var(--danger); }
+
 /* mini check-yourself */
 .blk-check { background: var(--bg-alt); border-style: dashed; }
 .blk-check .blk-label { color: var(--accent); }
 .blk-check .q { margin-bottom: 10px; }
 .blk-check .reveal-btn { font-size: 0.85rem; }
 .blk-check .answer { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); }
+.confidence-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.confidence-prompt { font-size: 0.85rem; color: var(--text-dim); margin-right: 2px; }
+.conf-btn { font-size: 0.85rem; padding: 6px 10px; }
+.confidence-chosen { font-size: 0.85rem; color: var(--text-dim); font-style: italic; }
 
 .graph-canvas { display: block; margin: 14px auto; max-width: 100%; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; }
 
 /* ---------- Flashcards ---------- */
+.deck-toolbar { display: flex; gap: 8px; margin-bottom: 20px; }
+.deck-toolbar button.active-toggle { background: var(--accent); color: #fff; border-color: var(--accent); }
 .deck-wrap { display: flex; flex-direction: column; align-items: center; gap: 20px; }
 .deck-stats { display: flex; gap: 22px; font-size: 0.88rem; color: var(--text-dim); }
 .deck-stats b { color: var(--text); }
@@ -299,6 +311,123 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 .problem-answer { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border); color: var(--text-dim); font-size: 0.92rem; }
 .problem-answer.no-official { font-style: italic; }
 .done-check { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-dim); white-space: nowrap; }
+.random-practice-bar { margin-bottom: 18px; }
+
+/* ---------- Daily tasks widget ---------- */
+.daily-widget {
+  background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 18px 20px; margin-bottom: 20px; box-shadow: var(--shadow);
+}
+.daily-widget-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.daily-widget-head h3 { margin: 0; font-size: 1.02rem; }
+.daily-widget-sub { color: var(--text-dim); font-size: 0.82rem; margin: 0 0 14px; }
+
+/* ---------- Home ---------- */
+.today-widget {
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.today-widget .today-count { font-size: 2.2rem; font-weight: 800; line-height: 1; }
+.today-widget .today-label { font-size: 0.88rem; opacity: 0.9; }
+.today-widget button.primary { background: #fff; color: var(--accent); }
+
+.deadline-widget {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 8px;
+}
+.deadline-widget-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.02em; }
+.deadline-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 0.92rem; border-top: 1px solid var(--border); }
+.deadline-row:first-child { border-top: none; }
+.deadline-row.past { color: var(--text-dim); text-decoration: line-through; opacity: 0.6; }
+.deadline-date { color: var(--text-dim); font-variant-numeric: tabular-nums; }
+
+/* ---------- Course overview ---------- */
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+@media (max-width: 720px) { .info-grid { grid-template-columns: 1fr; } }
+.info-box {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+}
+.info-box h3 { margin: 0 0 12px; font-size: 1rem; }
+.grading-row { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; padding: 8px 0; border-top: 1px solid var(--border); font-size: 0.9rem; }
+.grading-row:first-child { border-top: none; }
+.grading-detail { grid-column: 1 / -1; color: var(--text-dim); font-size: 0.82rem; }
+.resource-list { display: flex; flex-direction: column; gap: 8px; }
+.resource-link { color: var(--accent); text-decoration: none; font-size: 0.92rem; }
+.resource-link:hover { text-decoration: underline; }
+
+.calc-box .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px; margin-bottom: 18px; }
+.calc-field { display: flex; flex-direction: column; gap: 4px; font-size: 0.8rem; color: var(--text-dim); }
+.calc-field input {
+  padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--bg); color: var(--text); font-family: inherit; font-size: 0.95rem;
+}
+.calc-results { border-top: 1px solid var(--border); padding-top: 14px; }
+.calc-result-row { display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 6px; }
+
+/* ---------- Course toolbar ---------- */
+.course-toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0 24px; }
+
+/* ---------- Ajakava ---------- */
+.week-list { display: flex; flex-direction: column; gap: 10px; }
+.week-row {
+  display: grid; grid-template-columns: 90px 1fr; gap: 14px;
+  background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px;
+}
+.week-row.current { border-color: var(--accent); border-width: 1.5px; background: var(--accent-dim); }
+.week-num { font-weight: 700; color: var(--accent); font-size: 0.9rem; }
+.week-dates { color: var(--text-dim); font-size: 0.8rem; margin-bottom: 4px; }
+.week-theme { font-weight: 700; margin-bottom: 4px; }
+.week-practicum { font-size: 0.9rem; margin-bottom: 2px; }
+.week-tasks { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 2px; }
+.week-event { font-size: 0.85rem; color: var(--danger); margin-top: 4px; }
+.week-note { font-size: 0.85rem; color: var(--text-dim); font-style: italic; margin-top: 4px; }
+@media (max-width: 560px) { .week-row { grid-template-columns: 1fr; } }
+
+/* ---------- Exam simulation ---------- */
+.exam-toolbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 14px 18px; margin-bottom: 20px; position: sticky; top: 60px; z-index: 10; box-shadow: var(--shadow);
+}
+.exam-timer { font-size: 1.4rem; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--accent); }
+.exam-score-box { font-size: 1.6rem; font-weight: 800; color: var(--good); margin-bottom: 20px; }
+
+/* ---------- Prep checklist ---------- */
+.prep-box { background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; margin-bottom: 28px; }
+.prep-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.prep-count { font-size: 0.82rem; color: var(--text-dim); }
+.prep-list { display: flex; flex-direction: column; gap: 6px; }
+.prep-item { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; }
+
+/* ---------- Personal notes ---------- */
+.notes-box { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); }
+.notes-box h3 { margin: 0 0 4px; font-size: 1.05rem; }
+.notes-hint { color: var(--text-dim); font-size: 0.85rem; margin: 0 0 10px; }
+.notes-box textarea {
+  width: 100%; min-height: 140px; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--bg-alt); color: var(--text); font-family: inherit; font-size: 0.92rem; resize: vertical;
+}
+
+/* ---------- Cheat sheet ---------- */
+.cheat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.cheat-card { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; font-size: 0.85rem; }
+.cheat-front { font-weight: 700; margin-bottom: 6px; }
+.cheat-back { color: var(--text-dim); }
 
 /* ---------- Misc ---------- */
 .badge { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 0.72rem; background: var(--accent-dim); color: var(--accent); font-weight: 600; }

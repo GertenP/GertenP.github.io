@@ -1,8 +1,27 @@
-# Kõrgema matemaatika õpiplatvorm
+# Gerteni Õpikeskkond
 
 Staatiline HTML/CSS/JS sait (töötab otse GitHub Pages'is, ei vaja build-sammu).
-Teooria, "proovi kohe" mini-ülesanded, spaced-repetition flashcardid ja praktikumi
-ülesanded ühes kohas. Sisselogimine ja progress käivad Firebase kaudu.
+Isiklik Moodle-taoline õpikeskkond, kus iga **kursus** (nt Kõrgem matemaatika)
+koosneb peatükkidest: teooria + "proovi kohe" mini-ülesanded (koos
+kindlustunde-hinnanguga ja mõnel juhul graafikuga), spaced-repetition
+flashcardid ja praktikumi ülesanded. Sisselogimine ja progress käivad
+Firebase kaudu.
+
+**Avaleht**: ülekursuseline "täna kordamiseks" flashcard-vidin, lähenevad
+tähtajad, päevaülesanded (juhuslikud, kuid päeva sees püsivad ülesanded
+jooksva nädala teemal) ja kursuste nimekiri.
+
+**Kursuse leht**: hindamissüsteem, tähtajad, materjalid, punktikalkulaator,
+täielik 16-nädalane **ajakava** ning **mini-kontrolltöö simulatsioon**
+(ajapiiranguga, segatud ülesannetega, enesehindamisega tulemuste juures).
+
+**Peatüki leht** (4 vahekaarti):
+- *Teooria* — definitsioonid/näited/graafikud + "Lihtsamalt öeldes" ja
+  "Levinud viga" plokid + eelloengu checklist üleval + "Minu märkmed" all.
+- *Flashcardid* — Leitner-tüüpi kordamine, valitav "Tänased" / "Kõik kaardid".
+- *Praktikum* — kõik ülesanded (ka ilma ametliku vastuseta, ausalt märgitud),
+  "🎲 juhuslik valik" nupp.
+- *Spikker* — automaatselt kogunev kordamisleht valdatud (boks 5) kaartidest.
 
 ## 1. Firebase seadistamine (tee üks kord, ~5 min)
 
@@ -48,16 +67,30 @@ git push -u origin main
 Seejärel repos: **Settings -> Pages -> Source: Deploy from branch -> `main` / `root`**.
 Sait tekib aadressile `https://<kasutajanimi>.github.io/<repo-nimi>/`.
 
-## Uue nädala peatüki lisamine
+## Uue nädala peatüki lisamine (olemasolevasse kursusesse)
 
-1. Kopeeri `data/chapter1.js` uueks failiks, nt `data/chapter2.js`.
+1. Kopeeri `data/courses/km/chapter1.js` uueks failiks, nt `data/courses/km/chapter2.js`.
 2. Täida `id`, `week`, `title`, `theory`, `flashcards`, `practice` oma uue teemaga.
-3. Lisa `data/index.js` faili üks import-rida ja üks rida massiivi:
+3. `data/courses/km/index.js` failis lisa import ja rida massiivi:
    ```js
    import { chapter2 } from "./chapter2.js";
-   export const chapters = [chapter1, chapter2];
+   export const kmCourse = { meta: kmCourseMeta, chapters: [chapter1, chapter2] };
    ```
 4. Commit + push — GitHub Pages uueneb automaatselt paari minuti jooksul.
+
+## Uue kursuse lisamine (nt teine aine)
+
+1. Loo kaust `data/courses/<kursuse-id>/` (nt `data/courses/fyysika/`).
+2. Loo selles `course.js` (kopeeri `data/courses/km/course.js` eeskujuks — title,
+   lecturer, grading, thresholds, deadlines, resources), vähemalt üks `chapter1.js`
+   (kopeeri struktuur `km/chapter1.js` eeskujuks) ja `index.js`, mis need kokku pakib.
+3. `data/index.js` failis impordi uus kursus ja lisa massiivi:
+   ```js
+   import { fyysikaCourse } from "./courses/fyysika/index.js";
+   export const courses = [kmCourse, fyysikaCourse];
+   ```
+4. Commit + push. Uus kursus ilmub automaatselt avalehele ja ülekursuselisse
+   tänasesse kordamisse.
 
 ## Turvalisuse tähelepanek
 

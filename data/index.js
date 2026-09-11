@@ -1,5 +1,6 @@
-// Iga uue nädala peatükk: lisa fail data/chapterN.js (kopeeri chapter1.js struktuur)
-// ja lisa siia kaks rida - import + push allolevasse massiivi.
-import { chapter1 } from "./chapter1.js";
+// Uue kursuse lisamine: loo data/courses/<id>/ kaust (kopeeri km/ struktuur
+// eeskujuks: course.js + chapter1.js + index.js), impordi see siia ja lisa
+// allolevasse massiivi.
+import { kmCourse } from "./courses/km/index.js";
 
-export const chapters = [chapter1];
+export const courses = [kmCourse];
