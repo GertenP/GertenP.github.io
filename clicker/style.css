@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f3f3f3;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #333;
+}
+
+.score-display {
+    font-size: 1.5em;
+    margin: 20px 0;
+}
+
+img#gerten {
+    width: 150px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+img#gerten:active {
+    transform: scale(0.9);
+}
+
+.shop {
+    margin-top: 20px;
+}
+
+.shop button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.upgrades p {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
